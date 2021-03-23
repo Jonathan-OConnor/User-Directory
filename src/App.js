@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import API from "./utils/API"
-
+import EmployeeChart from "./components/EmployeeChart"
 
 class App extends Component {
-  state = {
-    employees: [],
-    searchInput: "",
+  constructor(props) {
+    super(props);
+    this.state = {
+      employees: [],
+      searchInput: ""
+    };
+
+    this.changeSearch = (event) => {
+      this.setState({
+        ...this.state,
+        searchInput: event.target.value
+      }
+      );
+    };
   }
+
 
   componentDidMount() {
     API.getRandomEmployees()
@@ -18,11 +30,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <input value={this.state.searchInput}></input>
-        </form>
-        <h1>test1</h1>
+      <div className="container">
+        <h2>Search by Name:</h2>
+        <input value={this.state.searchInput} onChange={this.changeSearch}></input>
+        <button>Sort Alphabetically By First Name</button>
+        <EmployeeChart employeeList={this.state.employees} search={this.state.searchInput}/>
+   
       </div>
     )
   }
