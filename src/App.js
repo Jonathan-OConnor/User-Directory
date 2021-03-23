@@ -8,7 +8,6 @@ class App extends Component {
     this.state = {
       employees: [],
       searchInput: "",
-      alphabetical: false
     };
 
     this.changeSearch = (event) => {
@@ -18,7 +17,7 @@ class App extends Component {
       }
       );
     };
-    this.toggleAlphabet = (event) =>{
+    this.toggleAlphabet = (event) => {
       event.preventDefault()
       this.setState({
         ...this.state,
@@ -39,13 +38,25 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+
+      <h1 className="text-center" >Employee Directory</h1>
         <div className="row">
-          <h2>Search by Name:</h2>
-          <input value={this.state.searchInput} onChange={this.changeSearch}></input>
-          <button className="btn btn-primary" onClick={this.toggleAlphabet}>Sort Employees Alphabetically</button>
+          <div className="col-6">
+            <span >
+              <label><h3>Search by Name:</h3></label>
+              <input value={this.state.searchInput} onChange={this.changeSearch} style={{ maxWidth: "540px" }}></input>
+            </span>
+          </div>
+          <div className="col-6 d-flex justify-content-end">
+            <button className="btn btn-primary" onClick={this.toggleAlphabet} style={{ maxWidth: "540px" }}>Sort Employees Alphabetically</button>
+          </div>
         </div>
 
-        <EmployeeChart employeeList={this.state.employees} search={this.state.searchInput} alphabetical={this.state.alphabetical}/>
+
+
+
+
+        <EmployeeChart employeeList={this.state.employees} search={this.state.searchInput} alphabetical={this.state.alphabetical} />
 
       </div>
     )

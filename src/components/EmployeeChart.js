@@ -11,7 +11,7 @@ class EmployeeChart extends Component {
             if ( a.name.first + a.name.last < b.name.first + b.name.last){
                 return -1;
               }
-              if ( a.name.first + a.name.last >b.name.first + b.name.last ){
+              if ( a.name.first + a.name.last > b.name.first + b.name.last ){
                 return 1;
               }
               return 0;
@@ -29,7 +29,7 @@ class EmployeeChart extends Component {
             searchChart.sort(this.compare)
         }
         return (
-            <ul>
+            <ul >
                 {searchChart.map(employee => <EmployeeCard firstName={employee.name.first} lastName={employee.name.last} picture={employee.picture.large} email={employee.email} phone={employee.cell} />)}
             </ul>
         )
