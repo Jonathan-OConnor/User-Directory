@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       employees: [],
-      searchInput: ""
+      searchInput: "",
+      alphabetical: false
     };
 
     this.changeSearch = (event) => {
@@ -17,6 +18,13 @@ class App extends Component {
       }
       );
     };
+    this.toggleAlphabet = (event) =>{
+      event.preventDefault()
+      this.setState({
+        ...this.state,
+        alphabetical: true
+      })
+    }
   }
 
 
@@ -31,15 +39,17 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h2>Search by Name:</h2>
-        <input value={this.state.searchInput} onChange={this.changeSearch}></input>
-        <button>Sort Alphabetically By First Name</button>
-        <EmployeeChart employeeList={this.state.employees} search={this.state.searchInput}/>
-   
+        <div className="row">
+          <h2>Search by Name:</h2>
+          <input value={this.state.searchInput} onChange={this.changeSearch}></input>
+          <button className="btn btn-primary" onClick={this.toggleAlphabet}>Sort Employees Alphabetically</button>
+        </div>
+
+        <EmployeeChart employeeList={this.state.employees} search={this.state.searchInput} alphabetical={this.state.alphabetical}/>
+
       </div>
     )
   }
 }
 
 export default App;
-
